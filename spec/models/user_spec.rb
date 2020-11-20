@@ -97,6 +97,30 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters.")
     end
 
+    it "first_name_readingが空では登録できないこと" do
+      @user.first_name_reading = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name reading can't be blank", "First name reading is invalid. Input full-width katakana characters.")
+    end
+
+    it "last_name_readingが空では登録できないこと" do
+      @user.last_name_reading = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name reading can't be blank", "Last name reading is invalid. Input full-width katakana characters.")
+    end
+
+    it "first_name_readingが全角（カタカナ）でなければ登録できないこと" do
+      @user.first_name_reading = "ﾀﾛｳ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width katakana characters.")
+    end
+
+    it "last_name_readingが全角（カタカナ）でなければ登録できないこと" do
+      @user.last_name_reading = "ﾔﾏﾀﾞ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width katakana characters.")
+    end
+
     it "birthdayが空では登録できないこと" do
       @user.birthday = nil
       @user.valid?
