@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to [:category, :days_to_ship, :item_condition, :shipping_cost, :shipping_source]
+  belongs_to_active_hash [:category, :days_to_ship, :item_condition, :shipping_cost, :shipping_source]
 
   with_options presence: true do
     validates :item_name
