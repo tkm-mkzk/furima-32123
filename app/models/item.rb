@@ -4,18 +4,10 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :days_to_ship
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :item_condition
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :shipping_cost
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :shipping_source
+  belongs_to_active_hash :days_to_ship
 
   with_options presence: true do
     validates :image
