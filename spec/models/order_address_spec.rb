@@ -34,38 +34,44 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
 
-      it "prefectureが空では出品できないこと" do
+      it "prefectureが空では購入できないこと" do
         @order_address.prefecture = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
 
-      it "prefectureが1では出品できないこと" do
+      it "prefectureが1では購入できないこと" do
         @order_address.prefecture = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
 
-      it "cityが空では出品できないこと" do
+      it "cityが空では購入できないこと" do
         @order_address.city = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("City can't be blank")
       end
 
-      it "addressesが空では出品できないこと" do
+      it "addressesが空では購入できないこと" do
         @order_address.addresses = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Addresses can't be blank")
       end
 
-      it "phone_numberが空では出品できないこと" do
+      it "phone_numberが空では購入できないこと" do
         @order_address.phone_number = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it "phone_numberはハイフンなしの11桁以下でないと出品できないこと" do
+      it "phone_numberは11桁以下でないと購入できないこと" do
         @order_address.phone_number = "090111111111"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid. No more than 11 digits and no hyphen(-)")
+      end
+
+      it "phone_numberは数字のみでないと（ハイフンが含まれていると）購入できないこと" do
+        @order_address.phone_number = "090-1111-1111"
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid. No more than 11 digits and no hyphen(-)")
       end
