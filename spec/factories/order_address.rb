@@ -4,7 +4,8 @@ FactoryBot.define do
     postal_code   {"111-1111"}
     prefecture    {2}
     city          {"横浜市緑区"}
-    addresses     {"青山１−１−１"}
+    addresses     {"青山1-1-1"}
+    building_name {"柳ビル103"}
     phone_number  {"09011111111"}
   end
 end

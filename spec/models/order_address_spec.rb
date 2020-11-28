@@ -8,7 +8,12 @@ RSpec.describe OrderAddress, type: :model do
 
     context '商品購入できる時' do
 
-      it "token、postal_code、prefecture、city、addresses、phone_numberが存在すれば購入できること" do
+      it "token、postal_code、prefecture、city、addresses、building_name、phone_numberが存在すれば購入できること" do
+        expect(@order_address).to be_valid
+      end
+
+      it "building_nameが空でも購入できること" do
+        @order_address.building_name = nil
         expect(@order_address).to be_valid
       end
 
