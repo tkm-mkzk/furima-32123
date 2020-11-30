@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :move_to_top, only: [:edit]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -54,15 +54,10 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @item.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
 
   def move_to_top
-    if @item.order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.order.present?
   end
-
 end
